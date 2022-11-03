@@ -24,6 +24,16 @@
     <P>pendidikan vokasional teknik elektro</P>
 
     <h2>Daftar Nama Dosen Fkip</h2>
+    <h3>
+        <a href="{% url 'tambah_dosen' %}">Tambah</a>
+    </h3>
+
+    {% for message in messages %}
+        {% if message %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
+
     <table class="table table-success table-striped">
         <tr>
             <th>NIP</th>
@@ -34,22 +44,36 @@
             <th>fakultas</th>
             <th>prodi</th>
             <th>alamat</th>
+            <th>action</th>
         </tr>
         {% for dosen in dataDosen %}
         <tr>
-            <td>{{ dosen.NIP }}</td>
-            <td>{{ dosen.nama }}</td>
-            <td>{{ dosen.tanggal_lahir }}</td>
-            <td><img src="{{ dosen.photo }}" alt="photo" width="100px"></td>
-            <td>{{ dosen.email }}</td>
-            <td>{{ dosen.fakultas }}</td>
-            <td>{{ dosen.prodi }}</td>
-            <td>{{ dosen.alamat }}</td>
+            <td><a href="{% url 'ubah_dosen' dosen.id %}">{{ dosen.nama }}</a></td>
+                <td>{{ dosen.NIP }}</td>
+                <td>{{ dosen.tanggal_lahir }}</td>
+                <td><img src="{{ dosen.photo }}" alt="photo" width="100px"></td>
+                <td>{{ dosen.email }}</td>
+                <td>{{ dosen.fakultas }}</td>
+                <td>{{ dosen.prodi }}</td>
+                <td>{{ dosen.alamat }}</td>
+            <td>
+                <a href="{% url 'hapus_dosen' dosen.id %}" class="btn btn-danger">hapus</a>
+            </td>
         </tr>
         {% endfor %}
     </table>
 
     <h2>Daftar Nama Mahasiswa Fkip</h2>
+    <h3>
+        <a href="{% url 'tambah_mahasiswa' %}">Tambah</a>
+    </h3>
+
+    {% for message in messages %}
+        {% if message %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
+
     <table class="table table-success table-striped">
         <tr>
             <th>NIM</th>
@@ -59,22 +83,35 @@
             <th>email</th>
             <th>fakultas</th>
             <th>prodi</th>
+            <th>action</th>
         </tr>
         {% for mahasiswa in dataMahasiswa %}
         <tr>
+            <td><a href="{% url 'ubah_mahasiswa' mahasiswa.id %}">{{ mahasiswa.nama }}</a></td>
             <td>{{ mahasiswa.NIM }}</td>
-            <td>{{ mahasiswa.nama }}</td>
             <td>{{ mahasiswa.tanggal_lahir }}</td>
             <td><img src="{{ mahasiswa.photo }}" alt="photo" width="100px"></td>
             <td>{{ mahasiswa.email }}</td>
             <td>{{ mahasiswa.fakultas }}</td>
             <td>{{ mahasiswa.prodi }}</td>
-            
+            <td>
+                <a href="{% url 'hapus_mahasiswa' mahasiswa.id %}" class="btn btn-danger">hapus</a>
+            </td> 
         </tr>
         {% endfor %}
     </table>
 
     <h2>Daftar Nama Staff Fkip</h2>
+    <h3>
+        <a href="{% url 'tambah_staff' %}">Tambah</a>
+    </h3>
+
+    {% for message in messages %}
+        {% if message %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
+
     <table class="table table-success table-striped">
         <tr>
             <th>NIP</th>
@@ -84,16 +121,20 @@
             <th>email</th>
             <th>unit</th>
             <th>alamat</th>
+            <th>action</th>
         </tr>
         {% for staff in dataStaff %}
         <tr>
+            <td><a href="{% url 'ubah_staff' staff.id %}">{{ staff.nama }}</a></td>
             <td>{{ staff.NIP }}</td>
-            <td>{{ staff.nama }}</td>
             <td>{{ staff.tanggal_lahir }}</td>
             <td><img src="{{ staff.photo }}" alt="photo" width="100px"></td>
             <td>{{ staff.email }}</td>
             <td>{{ staff.unit }}</td>
             <td>{{ staff.alamat }}</td>
+            <td>
+                <a href="{% url 'hapus_staff' staff.id %}" class="btn btn-danger">hapus</a>
+            </td> 
         </tr>
         {% endfor %}
     </table>
